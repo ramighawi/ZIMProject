@@ -1,4 +1,3 @@
-import extensions.UiActions;
 import extensions.Verifications;
 import io.qameta.allure.Description;
 import org.testng.annotations.Test;
@@ -8,7 +7,7 @@ import workflow.WorkFlow;
 
 public class TestCases extends CommonOps {
 
-    @Test(dataProvider = "data-provider",dataProviderClass = Utilities.class)
+    @Test(dataProvider = "data-provider",dataProviderClass = Utilities.class,description = "Table Search Test")
     @Description("verify we get the correct data from chosen column by giving a cell text in given column")
     public void tableSearchTest(String searchColumn, String searchText, String returnColumn, String expectedValue){
 

@@ -11,15 +11,22 @@ public class WorkFlow extends CommonOps {
     public static boolean verifyTableCellText(WebElement table, int searchColumn, String searchText, int returnColumnText, String expectedText) {
 
         String cellText = null;
+        boolean result=false;
 
-        cellText = UiActions.getTableCellText(table, searchColumn, searchText, returnColumnText);
+        try {
+            cellText = UiActions.getTableCellText(table, searchColumn, searchText, returnColumnText);
 
-        //The Second way to get the table cell text- by Xpath
-        //cellText = UiActions.getTableCellTextByXpath(table,searchColumn,searchText,returnColumnText);
+            //The Second way to get the table cell text- by Xpath
+            //cellText = UiActions.getTableCellTextByXpath(table,searchColumn,searchText,returnColumnText);
 
-        if (cellText.equals(expectedText)) {
-            return true;
-        } else return false;
+            if (cellText.equals(expectedText)) {
+                result = true;
+            }
+
+        } catch (Exception e){
+            e.printStackTrace();
+        }
+        return result;
 
     }
 

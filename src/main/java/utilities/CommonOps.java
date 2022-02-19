@@ -43,7 +43,6 @@ public class CommonOps extends Base {
             case "chrome":
                 WebDriverManager.chromedriver().setup();
                 webDriver = new ChromeDriver();
-
                 break;
 
             case "firefox":
@@ -59,6 +58,10 @@ public class CommonOps extends Base {
             case "edge":
                 WebDriverManager.edgedriver().setup();
                 webDriver = new EdgeDriver();
+                break;
+            default:
+                WebDriverManager.chromedriver().setup();
+                webDriver = new ChromeDriver();
                 break;
         }
 
@@ -77,6 +80,7 @@ public class CommonOps extends Base {
 
         {
             FileUtils.copyFile(screenshot, new File("./projectScreenshots/"+ arg0.getName()+".png"));
+            System.out.println("Screen shot was taken");
         } catch(IOException e)
 
         {
