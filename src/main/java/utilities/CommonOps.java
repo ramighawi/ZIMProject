@@ -74,7 +74,7 @@ public class CommonOps extends Base {
         try
 
         {
-            FileUtils.copyFile(screenshot, new File("./projectScreenshots/"+ arg0.getName()+".png"));
+            FileUtils.copyFile(screenshot, new File("./projectScreenshots/"+ arg0.getName()+MonteScreenRecorder.i+".png"));
             System.out.println("Screen shot was taken");
         } catch(IOException e)
 
