@@ -40,11 +40,6 @@ public class CommonOps extends Base {
 
         switch (browser.toLowerCase()) {
 
-            case "chrome":
-                WebDriverManager.chromedriver().setup();
-                webDriver = new ChromeDriver();
-                break;
-
             case "firefox":
                 WebDriverManager.firefoxdriver().setup();
                 webDriver = new FirefoxDriver();
