@@ -22,6 +22,7 @@ public class MonteScreenRecorder extends ScreenRecorder {
 
     public static ScreenRecorder screenRecorder;
     public String name;
+    public static int i=1;
 
     public MonteScreenRecorder(GraphicsConfiguration cfg, Rectangle captureArea, Format fileFormat,
                                Format screenFormat, Format mouseFormat, Format audioFormat,
@@ -39,8 +40,10 @@ public class MonteScreenRecorder extends ScreenRecorder {
             throw new IOException("\"" + movieFolder + "\" is not a directory.");
         }
         System.out.println("Recorded Screen Cast File is Now Created");
-        return new File(movieFolder,
+        File file=new File(movieFolder,
                 name + "." + Registry.getInstance().getExtension(fileFormat));
+
+          return file;
     }
 
     public static void startRecord(String methodName) throws Exception {
@@ -58,12 +61,16 @@ public class MonteScreenRecorder extends ScreenRecorder {
                         CompressorNameKey, ENCODING_AVI_TECHSMITH_SCREEN_CAPTURE, DepthKey, 24, FrameRateKey,
                         Rational.valueOf(15), QualityKey, 1.0f, KeyFrameIntervalKey, 15 * 60),
                 new Format(MediaTypeKey, MediaType.VIDEO, EncodingKey, "black", FrameRateKey, Rational.valueOf(30)),
-                null, file, methodName);
+                null, file, methodName+i);
+
         screenRecorder.start();
     }
 
     public static void stopRecord() throws Exception {
         screenRecorder.stop();
         System.out.println("Recorded Screen Cast File Stop Recording");
+        i++;
+
     }
+
 }

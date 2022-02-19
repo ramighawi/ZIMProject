@@ -7,6 +7,7 @@ import org.testng.ITestResult;
 import java.io.File;
 
 public class Listeners implements ITestListener{
+
     @Override
     public void onStart(ITestContext arg0) {
         System.out.println("------------------starting Execution-------------------------");
@@ -27,14 +28,17 @@ public class Listeners implements ITestListener{
         if(Base.webDriver!=null) {
             try{ MonteScreenRecorder.stopRecord(); }
             catch (Exception e){ e.printStackTrace(); }
-            File file = new File("./test-recordings/" + arg0.getName() + ".avi");
+            File file = new File("./test-recordings/" + arg0.getName()+(MonteScreenRecorder.i-1) + ".avi");
+
             if (file.delete()) System.out.println("File Deleted Successfully");
             else System.out.println("Failed to delete the file");
         }
 
+
     }
     @Override
     public void onTestFailure(ITestResult arg0) {
+
         System.out.println("------------------Failure Test: " + arg0.getName() + "-------------------------");
         CommonOps.saveScreenshot(arg0);
             try {
@@ -42,6 +46,7 @@ public class Listeners implements ITestListener{
             } catch (Exception e) {
                 e.printStackTrace();
             }
+
         }
 
 
@@ -52,5 +57,7 @@ public class Listeners implements ITestListener{
     @Override
     public void onFinish(ITestContext arg0) {
         System.out.println("------------------ended Execution-------------------------");
+
     }
+
 }
