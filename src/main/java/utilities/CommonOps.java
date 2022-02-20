@@ -1,8 +1,8 @@
 package utilities;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
+import io.qameta.allure.Attachment;
 import io.qameta.allure.Step;
-import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -10,12 +10,11 @@ import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.support.PageFactory;
-import org.testng.ITestResult;
-import org.testng.annotations.*;
+import org.testng.annotations.AfterClass;
+import org.testng.annotations.BeforeClass;
+import org.testng.annotations.Parameters;
 import pageobjects.TablePage;
 
-import java.io.File;
-import java.io.IOException;
 import java.sql.SQLException;
 
 public class CommonOps extends Base {
@@ -66,27 +65,19 @@ public class CommonOps extends Base {
 
     }
 
+    @Attachment(value = "Page Screen-Shot", type = "image/png")
+    public static byte[] saveScreenshot() {
 
-    public static void saveScreenshot(ITestResult arg0) {
-
-
-        File screenshot = ((TakesScreenshot) webDriver).getScreenshotAs(OutputType.FILE);
-        try
-
-        {
-            FileUtils.copyFile(screenshot, new File("./projectScreenshots/"+ arg0.getName()+MonteScreenRecorder.i+".png"));
-            System.out.println("Screen shot was taken");
-        } catch(IOException e)
-
-        {
-            System.out.println(e.getMessage());
-        }
+            return ((TakesScreenshot) webDriver).getScreenshotAs(OutputType.BYTES);
 
     }
 
 
+   }
 
 
 
 
-}
+
+
+

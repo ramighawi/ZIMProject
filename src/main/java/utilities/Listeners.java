@@ -40,7 +40,7 @@ public class Listeners implements ITestListener{
     public void onTestFailure(ITestResult arg0) {
 
         System.out.println("------------------Failure Test: " + arg0.getName() + "-------------------------");
-        CommonOps.saveScreenshot(arg0);
+        CommonOps.saveScreenshot();
             try {
                 MonteScreenRecorder.stopRecord();
             } catch (Exception e) {
